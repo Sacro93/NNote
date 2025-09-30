@@ -3,14 +3,19 @@ package com.example.nnote
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotesViewModel(private val repository: NotesRepository) : ViewModel(), INotesViewModel {
+@HiltViewModel
+class NotesViewModel @Inject constructor( // <--  Hilt inyectará aquí el Repository
+    private val repository: NotesRepository
+) : ViewModel(), INotesViewModel {
 
     override val notes: StateFlow<List<Note>> = repository.getNotes()
         .stateIn(
