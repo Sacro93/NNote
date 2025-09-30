@@ -1,43 +1,31 @@
 package com.example.nnote
 
-class NotesRepository {
+import kotlinx.coroutines.flow.Flow
 
-    private val notesInMemory = mutableListOf<Note>()
-    private var currentId = 0;
-    fun getNotes(): List<Note> {
-        return notesInMemory.toList()
+class NotesRepository ( private val noteDao: NoteDao){
+     fun getNotes(): Flow<List<Note>> {
+        return noteDao.getNotes()
     }
 
-    // Devolvemos una copia de la lista para que no se pueda modificar desde fuera.
-    // Es una capa extra de seguridad (encapsulación).
-    fun addNote(title: String, content: String) {
-        val newNote = Note(
-            id = currentId++.toLong(),
-            title = title,
-            content = content
-        )
-        notesInMemory.add(newNote)
+   /*Las funciones del Repository son suspend, porque escribir en la base de datos del
+   móvil es una operación "lenta" que no puede hacerse en el hilo principal (bloquearía la pantalla).
+    Para llamar a una función suspend, es obligatorio hacerlo dentro de una corrutina.
+   .launch es la forma estándar de crear una corrutina segura en el ViewModel.*/
+   suspend fun addNote(note: Note) {
+       noteDao.insertNote(note)
     }
 
-    fun removeNote(note: Note) {
-        notesInMemory.remove(note)
+    suspend fun removeNote(note: Note) {
+        noteDao.deleteNote(note)
     }
 
 
-    fun upDateNote(updatedNote: Note) {
-        val index = notesInMemory.indexOfFirst { it.id == updatedNote.id }
-        if (index != -1) {
-            notesInMemory[index] = updatedNote
-        }
+    suspend fun updateNote(note: Note) {
+        noteDao.updateNote(note)
     }
 
-    fun getNoteById(id: Long): Note? {
-        val index = notesInMemory.indexOfFirst { it.id == id }
-        return if (index != -1) {
-            notesInMemory[index]
-        } else {
-            null
-        }
+    suspend fun getNoteById(id: Long): Note? {
+        return noteDao.getNotesById(id)
     }
 
 
