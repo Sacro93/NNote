@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.nnote.Note
 import com.example.nnote.NotesViewModel
@@ -16,9 +17,10 @@ import com.example.nnote.NotesViewModel
 @Composable
 fun AddEditNoteScreen(
     noteId : Long,
-    viewModel: NotesViewModel,
     navController: NavController
 ) {
+
+    val viewModel: NotesViewModel = hiltViewModel()
 
     //para recordar el texto que el usuario escribe
     var title by remember { mutableStateOf("") }

@@ -17,8 +17,10 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,16 +37,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.nnote.Note
 import com.example.nnote.NotesViewModel
+import com.example.nnote.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotesListScreen(
-    viewModel: NotesViewModel,
     navController: NavController
 ) {
+
+    val viewModel: NotesViewModel = hiltViewModel()
 
     // 'collectAsState()' convierte el flujo de datos (StateFlow) del ViewModel en un
     // estado que Jetpack Compose puede observar.
@@ -56,7 +61,6 @@ fun NotesListScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Notes") },
-                // La sección 'actions' es para los iconos de la derecha.
                 actions = {
                     IconButton(onClick = { /* TODO: Lógica para ajustes */ }) {
                         Icon(Icons.Default.Settings, contentDescription = "Settings")
@@ -71,11 +75,10 @@ fun NotesListScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("add_edit_note/-1") },
-                // Hacemos el botón más cuadrado con RoundedCornerShape.
+                onClick = { navController.navigate(Screen.AddEditNoteScreen.withArgs(-1L))},
                 shape = RoundedCornerShape(16.dp)
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Añadir Nota")
+                Icon(Icons.Default.Add, contentDescription = "Add Note")
             }
         }
     ) { paddingValues ->
@@ -87,12 +90,16 @@ fun NotesListScreen(
             items(notes) { note ->
                 NoteItem(
                     note = note,
-                    onEditClick = { navController.navigate("add_edit_note/${note.id}")}
+                    onEditClick = { navController.navigate(Screen.AddEditNoteScreen.withArgs(note.id)) }
                 ,
                 onDeleteClick = { viewModel.removeNote(note) }
                 )
                 // El divisor para la línea de separación sutil entre elementos.
-                Divider(color = Color.LightGray.copy(alpha = 0.5f))
+                HorizontalDivider(
+                    Modifier,
+                    DividerDefaults.Thickness,
+                    color = Color.LightGray.copy(alpha = 0.5f)
+                )
             }
         }
     }
