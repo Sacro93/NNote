@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NotesViewModel @Inject constructor( // <--  Hilt inyectará aquí el Repository
+class NotesViewModel @Inject constructor(
     private val repository: NotesRepository
 ) : ViewModel(), INotesViewModel {
 

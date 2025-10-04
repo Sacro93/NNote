@@ -10,7 +10,7 @@ base de datos y un patrón Singleton clásico para proporcionar un punto de acce
 // 1. @Database: Anotación que marca la clase como una base de datos de Room.
 //    - entities: Aquí listamos todas nuestras clases @Entity.
 //    - version: Es el número de versión de la base de datos. Empieza en 1.
-@Database(entities = [Note::class], version = 1)
+@Database(entities = [Note::class], version = 1, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
 
     // 2. Función abstracta para cada DAO:
