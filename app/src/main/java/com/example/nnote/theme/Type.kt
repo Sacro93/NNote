@@ -1,4 +1,4 @@
-package com.example.nnote.ui.theme
+package com.example.nnote.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

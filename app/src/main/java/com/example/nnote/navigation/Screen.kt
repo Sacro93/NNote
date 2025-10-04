@@ -1,4 +1,4 @@
-package com.example.nnote
+package com.example.nnote.navigation
 
 sealed class Screen (val route : String) {
 

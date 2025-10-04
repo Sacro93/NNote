@@ -1,4 +1,4 @@
-package com.example.nnote
+package com.example.nnote.data
 
 import kotlinx.coroutines.flow.Flow
 

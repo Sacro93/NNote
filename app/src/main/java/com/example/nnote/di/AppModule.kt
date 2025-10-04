@@ -1,16 +1,15 @@
-package com.example.nnote
+package com.example.nnote.di
 
 import android.content.Context
+import com.example.nnote.data.NoteDao
+import com.example.nnote.data.NoteDatabase
+import com.example.nnote.data.NotesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-
-
-//Enseñar a Hilt a Construir Nuestras Piezas (El Módulo)
-//Ahora le damos a Hilt las "recetas" para construir nuestro Repository, DAO y Database. Esto se hace en un Módulo.
 
 /*Hilt encuentra un archivo anotado con @Module (tu AppModule).
 
@@ -26,7 +25,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNoteDatabase(@ApplicationContext context: Context): NoteDatabase {
-        return NoteDatabase.getDatabase(context)
+        return NoteDatabase.Companion.getDatabase(context)
     }
 
     @Suppress("unused")
