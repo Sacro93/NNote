@@ -1,5 +1,6 @@
-package com.example.nnote
+package com.example.nnote.ui.viewmodel
 
+import com.example.nnote.data.Note
 import kotlinx.coroutines.flow.StateFlow
 
 

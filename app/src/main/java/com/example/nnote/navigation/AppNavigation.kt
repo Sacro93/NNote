@@ -1,4 +1,4 @@
-package com.example.nnote
+package com.example.nnote.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -6,8 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.nnote.View.AddEditNoteScreen
-import com.example.nnote.View.NotesListScreen
+import com.example.nnote.ui.screens.AddEditNoteScreen
+import com.example.nnote.ui.screens.NotesListScreen
 
 
 @Composable
