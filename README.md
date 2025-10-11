@@ -10,7 +10,7 @@ This project will be constantly updated to apply other knowledge.
 *   **Architecture:** Trying to follow MVVM (Model-View-ViewModel).
 *   **Database:** Room, because it integrates very well with Coroutines.
 *   **Asynchrony:** Kotlin Coroutines to keep the app responsive during database operations.
-*   **Testing:** This is the newest part for me! I'm learning to write tests to make sure my code works as expected.
+*   **Testing:** 
     *   **Google Truth:** For super-readable assertions (`assertThat`).
     *   **MockK:** To "fake" parts of my code and test one thing at a time.
 
@@ -52,7 +52,7 @@ Este proyecto se irá actualizando constantemente para aplicar otros conocimient
 *   **Arquitectura:** Intentando seguir MVVM (Model-View-ViewModel).
 *   **Base de Datos:** Room, porque se integra muy bien con corutinas.
 *   **Asincronía:** Corutinas de Kotlin para que la app no se trabe con las operaciones de la base de datos.
-*   **Testing:** ¡La parte más nueva para mí! Estoy aprendiendo a hacer tests para asegurarme de que mi código funciona.
+*   **Testing:** 
     *   **Google Truth:** Para que las comprobaciones (`assertThat`) sean súper legibles.
     *   **MockK:** Para "falsear" partes de mi código y poder probar una sola cosa a la vez.
 
