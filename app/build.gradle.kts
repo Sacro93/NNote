@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -77,7 +78,7 @@ dependencies {
     //mockk
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
-
+    androidTestImplementation(libs.truth.v145)
     testImplementation(libs.google.truth)
 
 }

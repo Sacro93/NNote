@@ -13,9 +13,6 @@ import com.example.nnote.ui.screens.NotesListScreen
 @Composable
 fun AppNavigation() {
 
-    // 1. Creamos el "maquinista" (NavController).
-    // rememberNavController() lo crea y lo recuerda durante el ciclo de vida de la app.
-
     val navController = rememberNavController()
 
     NavHost(
@@ -27,9 +24,7 @@ fun AppNavigation() {
             NotesListScreen(navController = navController)
         }
 
-        // Estación B: El editor de notas
         composable(
-            // La ruta incluye un "argumento" o "parámetro" entre llaves.
             route = Screen.AddEditNoteScreen.route,
             arguments = listOf(navArgument("noteId") { type = NavType.LongType })
         ) { backStackEntry ->

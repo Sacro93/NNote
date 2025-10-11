@@ -48,11 +48,6 @@ fun NotesListScreen(
 ) {
 
     val viewModel: NotesViewModel = hiltViewModel()
-
-    // 'collectAsState()' convierte el flujo de datos (StateFlow) del ViewModel en un
-    // estado que Jetpack Compose puede observar.
-    // La palabra clave 'by' desenvuelve el estado, dándonos la lista de notas directamente.
-    //collectAsState crea una conexión viva y automática entre la UI y los datos del ViewModel.
     val notes by viewModel.notes.collectAsState()
 
     Scaffold(
@@ -60,14 +55,13 @@ fun NotesListScreen(
             TopAppBar(
                 title = { Text("Notes") },
                 actions = {
-                    IconButton(onClick = { /* TODO: Lógica para ajustes */ }) {
+                    IconButton(onClick = { }) {
                         Icon(Icons.Default.Settings, contentDescription = "Settings")
                     }
                 },
-                // Personalizamos los colores para que se ajusten a tu diseño.
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface, // Fondo blanco/claro
-                    titleContentColor = MaterialTheme.colorScheme.onSurface // Texto oscuro
+                    containerColor = MaterialTheme.colorScheme.surface, 
+                    titleContentColor = MaterialTheme.colorScheme.onSurface
                 )
             )
         },
@@ -83,7 +77,7 @@ fun NotesListScreen(
         LazyColumn(
             modifier = Modifier
                 .padding(paddingValues)
-                .padding(horizontal = 8.dp) // Un poco de padding a los lados
+                .padding(horizontal = 8.dp)
         ) {
             items(notes) { note ->
                 NoteItem(
@@ -92,7 +86,6 @@ fun NotesListScreen(
                 ,
                 onDeleteClick = { viewModel.removeNote(note) }
                 )
-                // El divisor para la línea de separación sutil entre elementos.
                 HorizontalDivider(
                     Modifier,
                     DividerDefaults.Thickness,
@@ -103,7 +96,6 @@ fun NotesListScreen(
     }
 }
 
-// --- COMPOSABLE REUTILIZABLE PARA CADA FILA DE LA LISTA ---
 @Composable
 fun NoteItem(
     note: Note,
@@ -118,7 +110,7 @@ fun NoteItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
-            modifier = Modifier.weight(1f) // This pushes the icons to the far right.
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = note.title,
@@ -136,12 +128,8 @@ fun NoteItem(
         IconButton(onClick = onEditClick) {
             Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit Note")
         }
-        // Delete button.
         IconButton(onClick = onDeleteClick) {
             Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Note")
         }
     }
 }
-
-
-

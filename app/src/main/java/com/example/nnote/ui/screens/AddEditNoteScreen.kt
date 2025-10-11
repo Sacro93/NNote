@@ -21,25 +21,19 @@ fun AddEditNoteScreen(
 
     val viewModel: NotesViewModel = hiltViewModel()
 
-    //para recordar el texto que el usuario escribe
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 
-    //se cargar los datos de la nota que se va a editar
-    //Este es el cerebro de la pantalla
     LaunchedEffect(key1 = Unit) {
-        // Si el noteId NO es -1, significa que estamos editando una nota existente.
         if (noteId != -1L) {
             val existingNote = viewModel.getNoteById(noteId)
             if (existingNote != null) {
-                // Rellenamos los campos de texto con los datos de la nota.
                 title = existingNote.title
                 content = existingNote.content
             }
         }
     }
 
-    // 3. Screen Structure
     Scaffold(
         topBar = {
             TopAppBar(
@@ -52,7 +46,6 @@ fun AddEditNoteScreen(
             )
         }
     ) { paddingValues ->
-        // 4. Form
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -76,7 +69,6 @@ fun AddEditNoteScreen(
                     .weight(1f)
             )
 
-            // 5. Save Button
             Button(
                 onClick = {
                     if (title.isNotBlank() && content.isNotBlank()) {
